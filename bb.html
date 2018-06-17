@@ -1,0 +1,37 @@
+<html lang="ko">
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    function onSubmit( form ){
+  var data = JSON.stringify( $(form).serializeArray() ); //  <-----------
+
+  console.log( data );
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+    
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://2thk5vpvgl.execute-api.ap-northeast-2.amazonaws.com/prod/aws-serverless-repository-sp-SplunkLoggingFunction-11SV0P9W7W5I5", true);
+    xhr.setRequestHeader("access-control-request-headers", "content-type");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.setRequestHeader("postman-token", "6c21d1bc-cc8f-73e7-ed68-f6718518462d");
+
+    xhr.send(data);
+  return false; //don't submit
+}
+</script>
+
+</head>
+
+<body lang="ko">
+
+        <form onsubmit='return onSubmit(this)'>
+          <input name='user' placeholder='user'><br>
+          <input name='password' type='password' placeholder='password'><br>
+          <button type='submit'>Try</button>
+        </form>
+</body>
